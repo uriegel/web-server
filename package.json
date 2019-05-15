@@ -1,0 +1,23 @@
+{
+  "name": "web-server",
+  "version": "1.0.0",
+  "description": "A web server based on node.js, express with authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uriegel/web-server.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express"
+  ],
+  "author": "Uwe Riegel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uriegel/web-server/issues"
+  },
+  "homepage": "https://github.com/uriegel/web-server#readme"
+}
