@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/uriegel/web-server/issues"
   },
-  "homepage": "https://github.com/uriegel/web-server#readme"
+  "homepage": "https://github.com/uriegel/web-server#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
