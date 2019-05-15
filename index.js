@@ -66,6 +66,7 @@ app.get('/logout', (req, res) => {
 
 const auth = require('connect-ensure-login').ensureLoggedIn()
 app.use("/familie", [auth, express.static(__dirname + '/static')])
+app.use('/public', express.static('public'))
 
 const https = require('https')
 const fs = require('fs')
