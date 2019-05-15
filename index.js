@@ -56,7 +56,7 @@ app.get('/login', (req, res) => res.render('login'))
   
 app.post('/login', 
     passport.authenticate('local', { failureRedirect: '/login' }),
-    (req, res) => res.redirect('/'))
+    (req, res) => res.redirect('/familie'))
   
 app.get('/logout', (req, res) => {
     req.logout()
@@ -64,7 +64,7 @@ app.get('/logout', (req, res) => {
 })
 
 const auth = require('connect-ensure-login').ensureLoggedIn()
-app.use("/", [auth, express.static(__dirname + '/static')])
+app.use("/familie", [auth, express.static(__dirname + '/static')])
 
 const https = require('https')
 const fs = require('fs')
