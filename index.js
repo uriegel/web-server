@@ -2,9 +2,13 @@ const express = require('express')
 var passport = require('passport')
 var Strategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
+const util = require('util')
 var db = require('./db')
 var favicon = require('serve-favicon')
+const fs = require('fs')
 var path = require('path')
+
+const readDir = util.promisify(fs.readdir)
 
 // Configure the local strategy for use by Passport.
 //
@@ -69,11 +73,19 @@ app.get('/logout', (req, res) => {
 })
 
 const auth = require('connect-ensure-login').ensureLoggedIn()
+
+
+//app.get('/images', auth, (req, res) => {
+app.get('/images', async (req, res) => {
+    var files = await readDir(path.join(__dirname, 'public', 'images'))
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(files))
+})
+
 app.use("/familie", [auth, express.static(__dirname + '/static')])
 app.use('/public', express.static('public'))
 
 const https = require('https')
-const fs = require('fs')
 https.createServer({
         key: fs.readFileSync('/etc/letsencrypt/live/uriegel.de/privkey.pem'),
         cert: fs.readFileSync('/etc/letsencrypt/live/uriegel.de/cert.pem'),
