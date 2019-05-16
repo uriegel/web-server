@@ -3,6 +3,8 @@ var passport = require('passport')
 var Strategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 var db = require('./db')
+var favicon = require('serve-favicon')
+var path = require('path')
 
 // Configure the local strategy for use by Passport.
 //
@@ -37,6 +39,8 @@ passport.deserializeUser((id, cb) => {
 })
 
 const app = express()
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.jpg')))
 
 // Configure view engine to render EJS templates.
 app.set('views', __dirname + '/views')
