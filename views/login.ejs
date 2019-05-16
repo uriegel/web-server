@@ -4,15 +4,15 @@
     <link href= "/public/assets/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <form action="/login" method="post">
-	<div>
-	    <label>Username:</label>
-	    <input type="text" name="username"/><br/>
+	<div class="tableRow">
+	    <p>Benutzername:</p>
+	    <p><input type="text" name="username" autofocus/></p>
 	</div>
-	<div>
-	    <label>Password:</label>
-	    <input type="password" name="password"/>
+	<div class="tableRow">
+	    <p>Passwort:</p>
+        <p><input type="password" name="password"/></p>
 	</div>
-	<div>
-	    <input type="submit" value="Submit"/>
+	<div class="tableRow">
+	    <p><input type="submit" value="Einloggen"/></p>    
 	</div>
 </form>

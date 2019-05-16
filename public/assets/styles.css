@@ -1,3 +1,20 @@
 body {
-    background-color: chartreuse;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgray;
+}
+
+form {
+    padding: 10px;
+    border: thin dotted #7e7e7e;
+    background-color: white;
+}
+
+div.tableRow {
+    display: table-row;
+}
+
+div.tableRow p {
+    display: table-cell;
+    vertical-align: top;
+    padding: 3px;
 }
