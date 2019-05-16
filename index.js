@@ -1,12 +1,13 @@
 const express = require('express')
-var passport = require('passport')
-var Strategy = require('passport-local').Strategy
+const passport = require('passport')
+const Strategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
+const cors = require('cors')
 const util = require('util')
-var db = require('./db')
-var favicon = require('serve-favicon')
+const db = require('./db')
+const favicon = require('serve-favicon')
 const fs = require('fs')
-var path = require('path')
+const path = require('path')
 
 const readDir = util.promisify(fs.readdir)
 
@@ -76,7 +77,7 @@ const auth = require('connect-ensure-login').ensureLoggedIn()
 
 
 //app.get('/images', auth, (req, res) => {
-app.get('/images', async (req, res) => {
+app.get('/images', cors(), async (req, res) => {
     var files = await readDir(path.join(__dirname, 'public', 'images'))
     res.setHeader('Content-Type', 'application/json')
     res.send(JSON.stringify(files))
