@@ -1,3 +1,5 @@
 node_modules
 db/users1.js
 public/images
+public/thumbnails
+dist/

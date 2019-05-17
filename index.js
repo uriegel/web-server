@@ -83,7 +83,7 @@ app.get('/images', cors(), async (req, res) => {
     res.send(JSON.stringify(files))
 })
 
-app.use("/familie", [auth, express.static(__dirname + '/static')])
+app.use("/familie", [auth, express.static(__dirname + '/dist/ImageViewer', { dotfiles: 'allow' })])
 app.use('/public', express.static('public'))
 
 const https = require('https')
