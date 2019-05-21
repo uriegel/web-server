@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt')
 const cors = require('cors')
 const util = require('util')
 const db = require('./db')
+const https = require('https')
+const http = require('http')
 const favicon = require('serve-favicon')
 const fs = require('fs')
 const path = require('path')
@@ -86,17 +88,21 @@ app.get('/images', cors(), async (req, res) => {
 app.use("/familie", [auth, express.static(__dirname + '/dist/ImageViewer', { dotfiles: 'allow' })])
 app.use('/public', express.static('public'))
 
-const https = require('https')
-https.createServer({
-        key: fs.readFileSync('/etc/letsencrypt/live/uriegel.de/privkey.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/uriegel.de/cert.pem'),
-        ca: fs.readFileSync('/etc/letsencrypt/live/uriegel.de/chain.pem')
-    }, app).listen(443, () => console.log('Listening...'))
-
-const insecureApp = express()
-insecureApp.use((req, res) => res.redirect("https://" + req.headers.host + req.url))
-//insecureApp.use(express.static(__dirname + '/static', { dotfiles: 'allow' } ))
-const http = require('http')
-http.createServer(insecureApp).listen(80, () => {
+http.createServer(app).listen(8080, 'localhost', () => {
     console.log('Listening...')
 })
+    
+// 
+// https.createServer({
+//          key: fs.readFileSync('/etc/letsencrypt/live/uriegel.de/privkey.pem'),
+//          cert: fs.readFileSync('/etc/letsencrypt/live/uriegel.de/cert.pem'),
+//          ca: fs.readFileSync('/etc/letsencrypt/live/uriegel.de/chain.pem')
+//      }, app).listen(443, () => console.log('Listening 443...'))
+
+// const insecureApp = express()
+// insecureApp.use((req, res) => res.redirect("https://" + req.headers.host + req.url))
+//insecureApp.use(express.static(__dirname + '/static', { dotfiles: 'allow' } ))
+// const http = require('http')
+// http.createServer(insecureApp).listen(80, () => {
+//     console.log('Listening...')
+// })
