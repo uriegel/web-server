@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt')
 const cors = require('cors')
 const util = require('util')
 const db = require('./db')
-const https = require('https')
 const http = require('http')
 const favicon = require('serve-favicon')
 const fs = require('fs')
@@ -68,7 +67,7 @@ app.get('/login', (req, res) => res.render('login'))
   
 app.post('/login', 
     passport.authenticate('local', { failureRedirect: '/login' }),
-    (req, res) => res.redirect('/familie'))
+    (req, res) => res.redirect('/'))
   
 app.get('/logout', (req, res) => {
     req.logout()
@@ -77,16 +76,15 @@ app.get('/logout', (req, res) => {
 
 const auth = require('connect-ensure-login').ensureLoggedIn()
 
-
 //app.get('/images', auth, (req, res) => {
-app.get('/images', cors(), async (req, res) => {
+app.get('/images', auth, cors(), async (req, res) => {
     var files = await readDir(path.join(__dirname, 'public', 'images'))
     res.setHeader('Content-Type', 'application/json')
     res.send(JSON.stringify(files))
 })
 
-app.use("/familie", [auth, express.static(__dirname + '/dist/ImageViewer', { dotfiles: 'allow' })])
 app.use('/public', express.static('public'))
+app.use("/", [auth, express.static(__dirname + '/dist/ImageViewer', { dotfiles: 'allow' })])
 
 http.createServer(app).listen(8080, 'localhost', () => {
     console.log('Listening...')
