@@ -78,9 +78,24 @@ const auth = require('connect-ensure-login').ensureLoggedIn()
 
 //app.get('/images', auth, (req, res) => {
 app.get('/images', auth, cors(), async (req, res) => {
-    var files = await readDir(path.join(__dirname, 'public', 'images'))
+    const  files = await readDir(path.join(__dirname, 'public', 'images'))
     res.setHeader('Content-Type', 'application/json')
     res.send(JSON.stringify(files))
+})
+
+app.get('/index', auth, cors(), async (req, res) => {
+    const targets = [{
+        title: "Spaziergang mit Roxy",
+        url: "roxy",
+        imageUrl: "indexes/roxy"
+    },
+    {
+        title: "Feier",
+        url: "celebration",
+        imageUrl: "indexes/celebration"
+    }]
+    res.setHeader('Content-Type', 'application/json')
+    res.send(JSON.stringify(targets))
 })
 
 app.use('/public', express.static('public'))
