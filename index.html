@@ -6,6 +6,7 @@
   </head>
   <body>
     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <button id=batten>sign out</button>
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -20,7 +21,18 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
+
+        gapi.auth2.getAuth
       }
+
+      const batten = document.getElementById("batten")
+      batten.addEventListener("click", () => {
+        const auth2 = gapi.auth2.getAuthInstance()
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        })
+      })
+      
     </script>
   </body>
 </html>

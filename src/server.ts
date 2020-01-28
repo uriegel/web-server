@@ -4,7 +4,7 @@ import http from 'http'
 
 const app = express()
 
-const dir = __dirname + '/../site'
+const dir = __dirname + '/..'
 
 app.use('/auth', (req: express.Request, res: express.Response) => {
     console.log("Aua", req)
