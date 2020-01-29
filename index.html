@@ -22,7 +22,14 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
 
-        gapi.auth2.getAuth
+        var xhr = new XMLHttpRequest()
+        xhr.open('POST', `/auth?email=${profile.getEmail()}`, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function () {
+          // do something to response
+          console.log(this.responseText);
+        };
+        xhr.send(profile.getEmail());
       }
 
       const batten = document.getElementById("batten")
