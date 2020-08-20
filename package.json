@@ -22,7 +22,7 @@
   "homepage": "https://github.com/uriegel/web-server#readme",
   "dependencies": {
     "@types/express": "^4.17.2",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "^1.4.4",
